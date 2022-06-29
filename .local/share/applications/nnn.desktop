@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=nnn
+Comment=Terminal file manager
+# d: details, H: hidden, c: cli opener, e: edit mode, S presistent session
+Exec=urxvtc -name nnn -e zsh -ic "nnn -dHcS %F"
+# Exec=urxvtc -name nnn -e zsh -ic "nnn -dHeS %F"
+Terminal=false
+Icon=nnn
+MimeType=inode/directory
+Categories=System;FileTools;FileManager;ConsoleOnly
+Keywords=File;Manager;Management;Explorer;Launcher
+StartupWMClass=NNN

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Help
+GenericName=Text Editor
+Comment=Help Text Editor
+Icon=urxvt
+Exec=urxvtc -name help -e nvim -R /home/adhiwena/.config/sxhkd/sxhkdrc
+Terminal=false
+Categories=System;ConsoleOnly;
+
