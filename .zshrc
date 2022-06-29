@@ -142,8 +142,11 @@ alias q=exit
 alias v=nvim
 alias sv="sudo -e"
 alias clip="xclip -sel clip"
-alias c=chezmoi
-alias cv="chezmoi edit"
+alias stowa="stow --target=$HOME --dir=$HOME/Github/dotfiles"
+alias stowd="stow --target=$HOME --delete --dir=$HOME/Github/dotfiles"
+# alias stowg="cd $HOME/Github/dotfiles && git add --all && git commit 'update' && cd -"
+alias stowg="cd $HOME/Github/dotfiles && git add --all && git commit -m 'update' && cd -"
+# alias stowg=cd $HOME/Github/dotfiles && git add --all && git commit "update" && git push && cd -
 alias mkva="/home/data/Github/Scripts/Bash/mkva.sh"
 alias mkvm="/home/data/Github/Scripts/Bash/mkvm.sh"
 
