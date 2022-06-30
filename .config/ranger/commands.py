@@ -88,52 +88,6 @@ class trash(Command):
             else:
                 raise
 
-class quitall(Command):
-    """:quitall
-
-    Quits if there are no tasks in progress.
-    """
-    def _exit_with_save(self):
-        self._exit_no_work()
-                
-    def _exit_no_work(self):
-        if self.fm.loader.has_work():
-            self.fm.notify('Not quitting: Tasks in progress: Use `quitall!` to force quit')
-        else:
-            self.fm.exit()
-
-    def execute(self):
-        self.fm.execute_console("save_tabs")
-        self._exit_no_work()
-
-class quit(Command):  # pylint: disable=redefined-builtin
-    """:quit
-
-    Closes the current tab, if there's more than one tab.
-    Otherwise quits if there are no tasks in progress.
-    """
-    def _exit_no_work(self):
-        if self.fm.loader.has_work():
-            self.fm.notify('Not quitting: Tasks in progress: Use `quit!` to force quit')
-        else:
-            self.fm.exit()
-
-    def execute(self):
-        if len(self.fm.tabs) >= 2:
-            self.fm.tab_close()
-        else:
-            self.fm.execute_console("quitall")
-            # self._exit_no_work()
-
-class save_tabs(Command):
-    """:save_tabs
-
-    Save open tabs to ~/.local/share/ranger/tabs
-    """
-    def execute(self):
-        with open(self.fm.datapath('tabs'), 'w', encoding="utf-8") as fobj:
-            fobj.write('\0'.join(v.path for t, v in self.fm.tabs.items()) + '\0\0')
-
 class empty(Command):
     """:empty
     Delete trash permanently
@@ -141,7 +95,15 @@ class empty(Command):
 
     def execute(self):
         self.fm.run("rm -rf /home/adhiwena/.local/share/Trash/;rm -rf /home/data/.Trash-1000/")
-        #  self.fm.run("rm -rf /home/data/.Trash-1000/")
+
+class save_tabs(Command):
+    """:save_tabs
+
+    Save opened tabs to ~/.local/share/ranger/tabs
+    """
+    def execute(self):
+        with open(self.fm.datapath('tabs'), 'w', encoding="utf-8") as fobj:
+            fobj.write('\0'.join(v.path for t, v in self.fm.tabs.items()) + '\0\0')
 
 class dragon(Command):
     """:dragon
@@ -156,4 +118,38 @@ class dragon(Command):
     def dragondaemon(self):
         arguments = 'urxvtc -name dragon-term -e dragon-daemon {}'.format(" ".join(self.args[1:]))
         self.fm.execute_command(arguments)
+
+class quit(Command):  # pylint: disable=redefined-builtin
+    """:quit
+
+    Closes the current tab, if there's more than one tab.
+    Otherwise quits if there are no tasks in progress.
+    """
+    def _exit_no_work(self):
+        if self.fm.loader.has_work():
+            self.fm.notify('Not quitting: Tasks in progress: Use `quit!` to force quit')
+        else:
+            self.fm.exit()
+
+    def execute(self):
+        self.fm.execute_console("save_tabs") # save
+        if len(self.fm.tabs) >= 2:
+            self.fm.tab_close()
+        else:
+            self._exit_no_work()
+
+class quit_bang(Command):
+    """:quit!
+    Closes the current tab, if there's more than one tab.
+    Otherwise force quits immediately.
+    """
+    name = 'quit!'
+    allow_abbrev = False
+
+    def execute(self):
+        self.fm.execute_console("save_tabs") # save
+        if len(self.fm.tabs) >= 2:
+            self.fm.tab_close()
+        else:
+            self.fm.exit()
 
