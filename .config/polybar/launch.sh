@@ -1,4 +1,13 @@
 #!/bin/bash
+##########
+# Custom #
+##########
+
+# export POLYBAR_SCRIPTS=$HOME/Github/polybar-scripts/polybar-scripts 
+
+#######
+# RUN #
+#######
 
 # Terminate already running bar instances
 # killall -q polybar

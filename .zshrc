@@ -143,6 +143,7 @@ alias v=nvim
 alias sv="sudo -e"
 alias clip="xclip -sel clip"
 alias mkva="$HOME/Github/Scripts/Bash/mkva.sh"
+alias mkve="$HOME/Github/Scripts/Bash/mkve.sh"
 alias mkvm="$HOME/Github/Scripts/Bash/mkvm.sh"
 
 # alias SA="stow --target=$HOME --dir=$HOME/Github/dotfiles"

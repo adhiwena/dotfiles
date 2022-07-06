@@ -32,3 +32,4 @@ export ELM_SCALE=1
 #######
 
 export LANG=en_US.UTF-8
+export POLYBAR_SCRIPTS=$HOME/Github/polybar-scripts/polybar-scripts 

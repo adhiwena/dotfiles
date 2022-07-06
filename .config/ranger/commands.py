@@ -153,3 +153,29 @@ class quit_bang(Command):
         else:
             self.fm.exit()
 
+
+class quitall(Command):
+    """:quitall
+    Quits if there are no tasks in progress.
+    """
+    def _exit_no_work(self):
+        if self.fm.loader.has_work():
+            self.fm.notify('Not quitting: Tasks in progress: Use `quitall!` to force quit')
+        else:
+            self.fm.exit()
+
+    def execute(self):
+        self.fm.execute_console("save_tabs") # save
+        self._exit_no_work()
+
+
+class quitall_bang(Command):
+    """:quitall!
+    Force quits immediately.
+    """
+    name = 'quitall!'
+    allow_abbrev = False
+
+    def execute(self):
+        self.fm.execute_console("save_tabs") # save
+        self.fm.exit()
