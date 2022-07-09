@@ -145,6 +145,7 @@ alias clip="xclip -sel clip"
 alias mkva="$HOME/Github/Scripts/Bash/mkva.sh"
 alias mkve="$HOME/Github/Scripts/Bash/mkve.sh"
 alias mkvm="$HOME/Github/Scripts/Bash/mkvm.sh"
+alias md5c="$HOME/Github/Scripts/Bash/md5c.sh"
 
 # alias SA="stow --target=$HOME --dir=$HOME/Github/dotfiles"
 # alias SD="stow --target=$HOME --delete --dir=$HOME/Github/dotfiles"
